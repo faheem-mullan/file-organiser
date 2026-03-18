@@ -1,3 +1,4 @@
+const startScanning = require('./scanner')
 
 const args = process.argv.slice(2)
 const pathIndex=args.indexOf("--path")
@@ -10,5 +11,9 @@ if (pathIndex==-1){
     process.exit(1)
 }
 
+
 console.log(pathValue)
 console.log(byValue)
+startScanning(pathValue)
+      .then(() => console.log("DONE: All files organized."))
+       .catch(err => console.error("CRASHED:", err))
