@@ -2,7 +2,7 @@ const path = require('path')
 
 const dictionary={
     '.jpg': "images",
-    '.JPEG':"images",
+    '.jpeg':"images",
     '.png': "images",
     '.pdf': "Documents",
     '.docx': "Documents",
