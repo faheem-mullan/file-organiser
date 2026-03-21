@@ -24,7 +24,7 @@ const  startScanning=async(pathValue)=>{
        console.log(`Moving ${file} to ${category}...`);
        try{
         await movefile(pathValue,file,category)
-        console.log('about to emit')
+        
            emitter.emit('filemoved',file,category)}
            catch(err){
             console.log("ERROR",err.message)
