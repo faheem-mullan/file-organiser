@@ -2,11 +2,14 @@ const fs=require("fs")
 const identifier=require("./classifier")
 const movefile =require("./mover")
 const path =require("path")
+const emitter=require('./logger')
 
 const  startScanning=async(pathValue)=>{  
     const files =await fs.promises.readdir(pathValue)
     console.log(`Found ${files.length} items.`);
     for  (const file of files){
+     
+     
         console.log(`Checking: ${file}`);
         const fullpath=path.join(pathValue,file)
         const stats = await fs.promises.lstat(fullpath);
@@ -19,7 +22,13 @@ const  startScanning=async(pathValue)=>{
         } 
         const category=identifier(file)
        console.log(`Moving ${file} to ${category}...`);
+       try{
         await movefile(pathValue,file,category)
+        console.log('about to emit')
+           emitter.emit('filemoved',file,category)}
+           catch(err){
+            console.log("ERROR",err.message)
+           }
 
 
     }
