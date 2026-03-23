@@ -1,5 +1,6 @@
 const express=require('express');
 const startScanning = require('./src/scanner');
+const config=require('./src/config')
 
 
 const app=express()
@@ -21,12 +22,15 @@ app.post  ('/organise',async(req,res)=>{
         
 
         }catch(err){
-            res.json({success:false})
+            
+            res.status(500).json({success:false,error:err.message})
 
         }
   
 }) 
 
-   app.listen(3000,()=>{
-    console.log('server running on port 3000')
-})
+
+  
+   app.listen(config.port,()=>{
+    console.log(`server running on port ${config.port}`)
+   })
