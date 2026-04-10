@@ -1,4 +1,6 @@
-const allowedFolder =require('./src/config/config.js')
+const z=require('zod')
+const allowedFolder =require('../config/config')
+
 
 const object=z.object({
     path:z.string().min(1),

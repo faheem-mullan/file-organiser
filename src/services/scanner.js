@@ -2,7 +2,7 @@ const fs=require("fs")
 const identifier=require("./classifier")
 const movefile =require("./mover")
 const path =require("path")
-const emitter=require('./logger')
+const emitter=require('../utils/logger')
 
 const  startScanning=async(pathValue)=>{  
     const files =await fs.promises.readdir(pathValue)

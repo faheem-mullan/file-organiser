@@ -1,6 +1,6 @@
 const express=require('express');
-const startScanning = require('./src/scanner');
-const config=require('./src/config');
+const startScanning = require('./src/services/scanner');
+const config=require('./src/config/config');
 const Validaterequest=require('./src/middlewares/validate')
 
 
