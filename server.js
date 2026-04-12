@@ -2,6 +2,8 @@ const express=require('express');
 const startScanning = require('./src/services/scanner');
 const config=require('./src/config/config');
 const Validaterequest=require('./src/middlewares/validate')
+const globalerror=require('./src/middlewares/errormiddleware')
+const AppError = require('./src/utils/appError')
 
 
 const app=express()
@@ -31,7 +33,7 @@ app.use((req,res,next)=>{
   
 }) 
 
-
+app.use(globalerror)
   
    app.listen(config.port,()=>{
     console.log(`server running on port ${config.port}`)
