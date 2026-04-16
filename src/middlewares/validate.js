@@ -1,5 +1,6 @@
 const z=require('zod')
-const allowedFolder =require('../config/config')
+const config =require('../config/config')
+const path=require('path')
 
 
 const object=z.object({
@@ -8,19 +9,20 @@ const object=z.object({
 })
 function Validaterequest(req,res,next){
     const result = object.safeParse(req.body) 
-    const ALLOWED_FOLDER=allowedFolder
+   
     if (!result.success){
         return res.status(400).json({
             error:"Invalid Data Format",
             details:result.error.format()
         })
     }
-            const resolved =path.resolve(req.body.path)
-            if(!resolved.startsWith(ALLOWED_FOLDER)){
-               return res.status(403).json({error:"cannot access"})
-            }
-            next()
-            
+               const base=path.resolve(config.allowedFolder)
+                const target =path.resolve(req.body.path)
+                if(!target.startsWith(base)){
+                return res.status(403).json({error:"cannot access"})
+                }
+                next()
+                
         
       
 }

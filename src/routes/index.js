@@ -1,4 +1,4 @@
-const startScanning = require('./src/services/scanner')
+const startScanning = require('../services/scanner')
 
 const args = process.argv.slice(2)
 const pathIndex=args.indexOf("--path")
